@@ -37,6 +37,14 @@ jobs:
         # We publish via softprops/action-gh-release using GitHub-provided GITHUB_TOKEN.
         run: npm run electron:build -- --publish never
 
+      - name: List release outputs (debug)
+        shell: bash
+        run: |
+          echo "== ls -la release =="
+          ls -la release || true
+          echo "== find release (maxdepth 3) =="
+          find release -maxdepth 3 -type f -print || true
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -56,9 +64,15 @@ jobs:
         with:
           path: artifacts
 
+      - name: List downloaded artifacts (debug)
+        run: |
+          echo "== find artifacts (maxdepth 6) =="
+          find artifacts -maxdepth 6 -type f -print || true
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          fail_on_unmatched_files: true
           files: |
             artifacts/**/release/*.exe
             artifacts/**/release/*.dmg
