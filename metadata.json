@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Lyric Video Maker",
+  "description": "Upload an MP3, generate AI subtitles and cover art, and create a lyric video instantly.",
+  "requestFramePermissions": []
+}
