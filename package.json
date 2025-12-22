@@ -43,6 +43,11 @@
       "dist/**/*",
       "electron/**/*"
     ],
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
     "win": {
       "target": [
         {
